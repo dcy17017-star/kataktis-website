@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Team KATAKTIS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    :root {
+      --team-color: #FF0000;
+      --bg-color: #1a1a1a;
+      --text-color: #f5f5f5;
+      --card-bg: #2a2a2a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--bg-color);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--team-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo-container h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: var(--team-color);
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    nav a:hover { color: var(--team-color); }
+
+    .section {
+      display: none;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section.active { display: block; }
+
+    .section h2 {
+      color: var(--team-color);
+      margin-bottom: 20px;
+      border-left: 5px solid var(--team-color);
+      padding-left: 10px;
+    }
+
+    ul { list-style: none; padding: 0; }
+
+    li {
+      background-color: var(--card-bg);
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #444;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 3px solid var(--team-color);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin-top: 40px;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: var(--team-color);
+    }
+
+    form input[type="text"],
+    form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #2b2b2b;
+      color: var(--text-color);
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: var(--team-color);
+      outline: none;
+    }
+
+    form button {
+      background-color: var(--team-color);
+      color: white;
+      padding: 12px 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    form button:hover {
+      background-color: #cc0000;
+      transform: translateY(-1px);
+    }
+
+    /* Bannière */
+    #banniere {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #banniere img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .banniere-texte {
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .banniere-texte h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+    /* Fil actus */
+    #fil-actus {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto;
+      height: 500px;
+      background-color: #2a2a2a;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-actu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-actu.active { opacity: 1; z-index: 1; }
+
+    .slide-actu img {
+      width: 100%;
+      max-width: 1000px;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .actu-texte {
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    /* Cards navigation */
+    .grid-navigation {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .nav-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+/* Centrer la grid-navigation sur l'accueil */
+#accueil .grid-navigation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center; /* centre les colonnes */
+  justify-items: center;   /* centre le contenu des cards */
+}
+
+
+    .nav-info { padding: 16px; }
+
+    .nav-info h3 { margin: 0 0 8px; color: var(--team-color); }
+
+    html { scroll-behavior: smooth; }
+  </style>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){ emailjs.init("Contact KATAKTIS"); })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage(location.hash || '#accueil');
+
+      // slider actus
+      let slideIndex = 0;
+      const slides = document.querySelectorAll("#fil-actus .slide-actu");
+      if(slides.length>0){
+        setInterval(()=>{
+          slides[slideIndex].classList.remove("active");
+          slideIndex = (slideIndex+1)%slides.length;
+          slides[slideIndex].classList.add("active");
+        },5000);
+      }
+    });
+
+    function showPage(pageId) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      const section = document.querySelector(pageId);
+      if(section) section.classList.add('active');
+    }
+
+    window.addEventListener('hashchange', () => showPage(location.hash||'#accueil'));
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="logo.png" alt="Logo Kataktis">
+    <h1>Team KATAKTIS</h1>
+  </div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#reseaux">Réseaux</a>
+    <a href="#joueurs">Joueurs</a>
+    <a href="#effectif">Effectif</a>
+    <a href="#recrutement">Recrutement</a>
+  </nav>
+</header>
+
+
+
+
+
+
+
+<!-- Accueil -->
+<section id="accueil" class="section" style="padding: 0; margin: 0;">
+  <!-- Bannière -->
+  <div id="banniere-vyn" style="
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  ">
+    <img src="banniere.jpg" alt="Accueil" style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -1;
+    ">
+    <div style="
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    ">
+      <h1 style="font-size: 2.5rem; color: white; margin-bottom: 10px;">Bienvenue chez Team KATAKTIS</h1>
+      <p style="font-size: 1.5rem; color: white;">Team e-sport compétitive & créative. Rejoins l'élite !</p>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="grid-navigation" style="justify-items:center; text-align:center;">
+    <a href="#joueurs" class="nav-card">
+      <img src="joueurs.jpg" alt="Nos Joueurs">
+      <div class="nav-info">
+        <h3>Nos Joueurs</h3>
+        <p>Rencontre les talents de la Team Kataktis.</p>
+      </div>
+    </a>
+    <a href="#tournois" class="nav-card">
+      <img src="tournois.jpg" alt="Tournois">
+      <div class="nav-info">
+        <h3>Tournois</h3>
+        <p>Nos compétitions à venir et passées.</p>
+      </div>
+    </a>
+    <a href="#recrutement" class="nav-card">
+      <img src="recrutement.jpg" alt="Recrutement">
+      <div class="nav-info">
+        <h3>Recrutement</h3>
+        <p>Tu veux nous rejoindre ? C'est par ici !</p>
+      </div>
+    </a>
+    <a href="#boutique" class="nav-card">
+      <img src="boutique.jpg" alt="Boutique">
+      <div class="nav-info">
+        <h3>Boutique</h3>
+        <p>Achète nos produits officiels.</p>
+      </div>
+    </a>
+    <a href="#reseaux" class="nav-card">
+      <img src="reseaux.jpg" alt="Réseaux">
+      <div class="nav-info">
+        <h3>Nos Réseaux</h3>
+        <p style="color:white;">Suis-nous sur les plateformes sociales.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Joueurs -->
+<section id="joueurs" class="section">
+  <h2>Nos Joueurs</h2>
+  <div class="category">
+    <h3>🏆 Joueurs Officiels</h3>
+    <ul>
+      <li style="color:white;">
+        <img src="fr1.png" alt="Joueur 1" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr2.png" alt="Joueur 2" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr3.png" alt="Joueur 3" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr10.png" alt="Joueur 4" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr11.png" alt="Joueur 5" style="height:250px;">
+        <p></p>
+      </li>
+    </ul>
+<h3>🏆 Joueurs Academique</h3>
+    <ul>
+      <li style="color:white;">
+        <img src="fr4.png" alt="Joueur 6" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr5.png" alt="Joueur 7" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr6.png" alt="Joueur 8" style="height:250px;">
+        <p></p>
+      </li>
+      </li>
+      <li style="color:white;">
+        <img src="fr12.png" alt="Joueur 11" style="height:250px;">
+        <p></p>
+      </li>
+    </ul>
+
+<h3>🏆 Joueurs Espoirs</h3>
+    <ul>
+      <li style="color:white;">
+        <img src="fr8.png" alt="Joueur 9" style="height:250px;">
+        <p></p>
+      </li>
+      <li style="color:white;">
+        <img src="fr9.png" alt="Joueur 10" style="height:250px;">
+        <p></p>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Réseaux -->
+<section id="reseaux" class="section">
+  <h2>Nos Réseaux</h2>
+  <div class="grid">
+    <a href="https://www.instagram.com/kataktis_esport/" target="_blank" class="card">
+      <img src="insta.png" alt="Instagram" style="height:60px;">
+      <h4 style="color:white;">@kataktis_esport</h4>
+      <p style="color:white;">Instagram</p>
+    </a>
+    <a href="https://x.com/KataktisS" target="_blank" class="card">
+      <img src="x.png" alt="X/Twitter" style="height:60px;">
+      <h4 style="color:white;">@Kataktis eSport</h4>
+      <p style="color:white;">X (Twitter)</p>
+    </a>
+    <a href="https://www.twitch.tv/kataktisesport" target="_blank" class="card">
+      <img src="twitch.png" alt="Twitch" style="height:60px;">
+      <h4 style="color:white;">@KataktisEsport</h4>
+      <p style="color:white;">Twitch</p>
+    </a>
+    <a href="https://www.youtube.com/@kataktise-sport5639" target="_blank" class="card">
+      <img src="yt.png" alt="YouTube" style="height:60px;">
+      <h4 style="color:white;">@Kataktis E-sport</h4>
+      <p style="color:white;">YouTube</p>
+    </a>
+    <a href="https://www.tiktok.com/@kataktis.esp" target="_blank" class="card">
+      <img src="tt.png" alt="TikTok" style="height:60px;">
+      <h4 style="color:white;">@Kataktis.esport</h4>
+      <p style="color:white;">TikTok</p>
+    </a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- Clan -->
+<section id="effectif" class="section">
+
+
+  <h2>Présidence</h2>
+  <ul>
+    <li>Allerxis </li>
+    <li>Aviary </li>
+  </ul>
+
+
+  <h2>Co-Président</h2>
+  <ul>
+    <li>BLK</li>
+  </ul>
+
+
+  <h2>Equipe Audio Visuel</h2>
+  <ul>
+    <li>Yassd34 - CM</li>
+    <li>Quaved - Graphiste</li>
+  </ul>
+
+
+  <h2>Modération</h2>
+  <ul>
+    <li>Viking</li>
+  </ul>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- Boutique -->
+<section id="boutique" class="section">
+  <h2>Boutique</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="soon" alt="soon" style="width:100%; border-radius:8px;">
+      <h4>soon</h4>
+      <p>soon</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Tournois -->
+<section id="tournois" class="section">
+  <h2>Tournois</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="actu1.jpg" alt="Kataktis Cup" style="width:100%; border-radius:8px;">
+      <h4>Kataktis Cup</h4>
+      <p>Août</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="recrutement" class="section">
+  <h2 tabindex="-1">Rejoins la team ou collabore avec nous</h2>
+
+  <!-- Partie 1 : Candidature joueur -->
+  <div style="margin-bottom: 50px;">
+    <h3 style="color: var(--team-color); border-left: 4px solid var(--team-color); padding-left: 10px;">🎮 Candidature Joueur</h3>
+    <form id="recrutement-form" style="max-width: 600px; margin: auto;">
+      <label for="discord">Pseudo Discord</label>
+      <input id="discord" type="text" name="discord" placeholder="Ex: KTK_Yass" required>
+
+      <label for="pr">PR / Division</label>
+      <input id="pr" type="text" name="pr" placeholder="Ex: 1k2 PR, Div 2" required>
+
+      <label for="message">Présente-toi</label>
+      <textarea id="message" name="message" placeholder="Parle-nous de ton jeu, ton rôle, ta plateforme, ton ambition…" required></textarea>
+
+      <button type="submit">Envoyer ma candidature</button>
+      <p id="form-message" style="margin-top:10px;"></p>
+    </form>
+  </div>
+
+  <!-- Partie 2 : Partenariat -->
+  <div>
+    <h3 style="color: var(--team-color); border-left: 4px solid var(--team-color); padding-left: 10px;">🤝 Demande de Partenariat</h3>
+    <form id="partenaire-form" style="max-width: 600px; margin: auto;">
+
+      <label for="nom">Nom de la structure</label>
+      <input id="nom" type="text" name="nom_structure" placeholder="Nom de votre entreprise / team" required>
+
+      <label for="email">Email</label>
+      <input id="email" type="text" name="email" placeholder="contact@votresite.com" required>
+
+      <label for="proposition">Votre proposition</label>
+      <textarea id="proposition" name="proposition" placeholder="Expliquez-nous votre idée de partenariat..." required></textarea>
+
+      <button type="submit">Envoyer ma demande</button>
+      <p id="partner-message" style="margin-top:10px;"></p>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialisation avec ta clé publique
+    (function(){ 
+      emailjs.init("pMwdLWhRC_47k_8LL");  
+    })();
+
+    // Envoi formulaire joueur
+    document.getElementById('recrutement-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = this;
+      const msg = document.getElementById("form-message");
+
+      emailjs.sendForm('service_mj22iql', 'template_6e56eep', this) 
+        .then(() => {
+          msg.textContent = "✅ Candidature envoyée avec succès !";
+          msg.style.color = "green";
+          form.reset();
+        }, (error) => {
+          msg.textContent = "❌ Erreur. Réessaye.";
+          msg.style.color = "red";
+          console.error(error);
+        });
+    });
+
+    // Envoi formulaire partenaire
+    document.getElementById('partenaire-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = this;
+      const msg = document.getElementById("partner-message");
+
+      emailjs.sendForm('service_mj22iql', 'template_6e56eep', this) 
+        .then(() => {
+          msg.textContent = "✅ Demande envoyée avec succès !";
+          msg.style.color = "green";
+          form.reset();
+        }, (error) => {
+          msg.textContent = "❌ Une erreur est survenue.";
+          msg.style.color = "red";
+          console.error(error);
+        });
+    });
+  </script>
+</section>
