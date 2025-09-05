@@ -729,14 +729,21 @@
   <div style="margin-bottom: 50px;">
     <h3 style="color: var(--team-color); border-left: 4px solid var(--team-color); padding-left: 10px;">🎮 Candidature Joueur</h3>
     <form id="recrutement-form" style="max-width: 600px; margin: auto;">
+
       <label for="discord">Pseudo Discord</label>
       <input id="discord" type="text" name="discord" placeholder="Ex: KTK_Yass" required>
 
       <label for="pr">PR / Division</label>
       <input id="pr" type="text" name="pr" placeholder="Ex: 1k2 PR, Div 2" required>
 
-      <label for="message">Présente-toi</label>
-      <textarea id="message" name="message" placeholder="Parle-nous de ton jeu, ton rôle, ta plateforme, ton ambition…" required></textarea>
+      <label for="tracker">Tracker</label>
+      <input id="tracker" type="text" name="tracker" placeholder="..." required>
+
+      <label for="présentation">Présente-toi</label>
+      <textarea id="présentation" name="présentation" placeholder="Parle-nous de toi" required></textarea>
+
+      <label for="message">Présente-ton gameplay</label>
+      <textarea id="message" name="message" placeholder="rôle, ambition, un duo ?" required></textarea>
 
       <button type="submit">Envoyer ma candidature</button>
       <p id="form-message" style="margin-top:10px;"></p>
