@@ -252,6 +252,8 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
+
+
     .nav-card img {
       width: 100%;
       height: 200px;
@@ -270,11 +272,6 @@
     .nav-info { padding: 16px; }
 
     .nav-info h3 { margin: 0 0 8px; color: var(--team-color); }
-
-    .nav-info h8 { margin: 0 0 8px; color: var(1A3147); }
-
-    .nav-info h9 { margin: 0 0 8px; color: var(1A3147); }
-
 
     html { scroll-behavior: smooth; }
   </style>
@@ -304,9 +301,24 @@
       if(section) section.classList.add('active');
     }
 
-
     window.addEventListener('hashchange', () => showPage(location.hash||'#accueil'));
   </script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recrutement - Kataktis</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("pMwdLWhRC_47k_8LL"); // ta clé publique
+    })();
+  </script>
+
+
 </head>
 <body>
 
@@ -318,13 +330,9 @@
   <nav>
     <a href="#accueil">Accueil</a>
     <a href="#reseaux">Réseaux</a>
-    <a href="#joueurs">Fortnite</a>
-    <a href="#rocket_league">Rocket League</a>
-    <a href="#brawl_stars">Brawl Stars</a>
-    <a href="#tournois">Tournois</a>
+    <a href="#joueurs">Joueurs</a>
     <a href="#effectif">Effectif</a>
     <a href="#recrutement">Recrutement</a>
-
   </nav>
 </header>
 
@@ -334,83 +342,7 @@
 
 
 
-
-<!-- Rocket League -->
-
-<section id="rocket_league" class="section" style="padding: 0; margin: 0;">
-  <!-- Bannière -->
-  <div id="banniere-rl" style="
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-  ">
-    <img src="banniererl.jpg" alt="Accueil" style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: -1;
-    ">
-    <div style="
-      backdrop-filter: blur(8px);
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 16px;
-      padding: 30px 40px;
-      max-width: 50%;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    ">
-      <h1 style="font-size: 2.5rem; color: white; margin-bottom: 10px;">ROCKET LEAGUE</h1>
-      <p style="font-size: 1.5rem; color: white;">Nouveau pole en création !</p>
-    </div>
-  </div>
-  <h2>Nos Joueurs</h2>
-  <div class="grid">
-    <a href="résaux joueur ----" target="_blank" class="card">
-      <img src="rl1.png" alt="Instagram" style="max-width:300px; width:100%; height:auto;">
-      <h4 style="color:white;">K2</h4>
-      <p style="color:white;"></p>
-    </a>
-    <a href="résaux joueur ----" target="_blank" class="card">
-      <img src="rl1.png" alt="X/Twitter" style="max-width:300px; width:100%; height:auto;">
-      <h4 style="color:white;">Neroo</h4>
-      <p style="color:white;"></p>
-    </a>
-    <a href="résaux joueur ----" target="_blank" class="card">
-      <img src="rl1.png" alt="Twitch" style="max-width:300px; width:100%; height:auto;">
-      <h4 style="color:white;">soon ...</h4>
-      <p style="color:white;"></p>
-    </a>
-
-  </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Accueil -->
-
 <section id="accueil" class="section" style="padding: 0; margin: 0;">
   <!-- Bannière -->
   <div id="banniere-vyn" style="
@@ -449,25 +381,7 @@
     </div>
   </div>
 
-  <!-- Fil d'actualité -->
-  <section id="fil-actus" style="margin: 1">
-    <div class="slide-actu active">
-      <img src="actu1.jpg" alt="Actu 1">
-      <div class="actu-texte">📢 Kataktis X XEOS CUP arrive le 27 !</div>
-    </div>
-    <div class="slide-actu">
-      <img src="actu2.jpg" alt="Actu 2">
-      <div class="actu-texte">🔥Rocket league !</div>
-    </div>
-    <div class="slide-actu">
-      <img src="actu3.jpg" alt="Actu 1">
-      <div class="actu-texte">📢 fusion avec Cryzox!</div>
-    </div>
-    <div class="slide-actu">
-      <img src="actu4.jpg" alt="Actu 2">
-      <div class="actu-texte">🔥Roster Brawl Stars en approche !</div>
-    </div>
-  </section>
+
 
 
 
@@ -489,7 +403,7 @@
     <a href="#recrutement" class="nav-card">
       <img src="recrutement.jpg" alt="Recrutement">
       <div class="nav-info">
-        <h4>Recrutement</h4>
+        <h3>Recrutement</h3>
         <p>Tu veux nous rejoindre ? C'est par ici !</p>
       </div>
     </a>
@@ -503,27 +417,12 @@
     <a href="#reseaux" class="nav-card">
       <img src="reseaux.jpg" alt="Réseaux">
       <div class="nav-info">
-        <h4>Nos Réseaux</h4>
+        <h3>Nos Réseaux</h3>
         <p style="color:white;">Suis-nous sur les plateformes sociales.</p>
-      </div>
-    </a>
-    <a href="#rocket_league" class="nav-card">
-      <img src="rocket_league.jpg" alt="rocket_league">
-      <div class="nav-info">
-        <h3>Rocket League</h3>
-        <p style="color:white;">Part avec nous dans l'univers de Rocket League</p>
       </div>
     </a>
   </div>
 </section>
-
-
-
-
-
-
-
-
 
 
 
@@ -534,169 +433,64 @@
 
 
 <!-- Joueurs -->
-
 <section id="joueurs" class="section">
   <h2>Nos Joueurs</h2>
   <div class="category">
     <h3>🏆 Joueurs Officiels</h3>
     <ul>
-
       <li style="color:white;">
-        <a href="https://x.com/mlody_74?s=11" target="_blank">
-        <img src="fr1.png" alt="Joueur 1" style="height:100%; width:100%;">
-        </a>
+        <img src="fr1.png" alt="Joueur 1" style="height:250px;">
         <p></p>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/erxk23" target="_blank">
-        <img src="fr2.png" alt="Joueur 2" style="height:100%; width:100%;">
-        </a>
+        <img src="fr2.png" alt="Joueur 2" style="height:250px;">
         <p></p>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/shinftne?s=21" target="_blank">
-        <img src="fr3.png" alt="Joueur 3" style="height:100%; width:100%;">
-        </a>
+        <img src="fr3.png" alt="Joueur 3" style="height:250px;">
         <p></p>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/haxofn_?s=11" target="_blank">
-        <img src="fr10.png" alt="Joueur 4" style="height:100%; width:100%;">
+        <img src="fr10.png" alt="Joueur 4" style="height:250px;">
         <p></p>
-        </a>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/novax7q" target="_blank">
-        <img src="fr11.png" alt="Joueur 5" style="height:100%; width:100%;">
+        <img src="fr11.png" alt="Joueur 5" style="height:250px;">
         <p></p>
-        </a>
       </li>
     </ul>
-
-
 <h3>🏆 Joueurs Academique</h3>
     <ul>
-
-
       <li style="color:white;">
-        <a href="https://x.com/nerzox35?" target="_blank">
-        <img src="fr4.png" alt="Joueur 6" style="height:100%; width:100%;">
+        <img src="fr4.png" alt="Joueur 6" style="height:250px;">
         <p></p>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/yayaZFN" target="_blank">
-        <img src="fr5.png" alt="Joueur 7" style="height:100%; width:100%;">
-        </a>
+        <img src="fr5.png" alt="Joueur 7" style="height:250px;">
         <p></p>
       </li>
-
-
       <li style="color:white;">
-        <a href="https://x.com/tsukofnbr?s=21" target="_blank">
-        <img src="fr6.png" alt="Joueur 8" style="height:100%; width:100%;">
+        <img src="fr6.png" alt="Joueur 8" style="height:250px;">
         <p></p>
-        </a>
       </li>
-
-
+      </li>
       <li style="color:white;">
-        <a href="https://x.com/Rodrxz77" target="_blank">
-        <img src="fr12.png" alt="Joueur 11" style="height:100%; width:100%;">
+        <img src="fr12.png" alt="Joueur 11" style="height:250px;">
         <p></p>
-        </a>
       </li>
     </ul>
 
-
 <h3>🏆 Joueurs Espoirs</h3>
-<ul>
-  <li style="color:white;">
-    <a href="https://www.twitch.tv/siinuz" target="_blank">
-      <img src="fr8.png" alt="Joueur 9" style="height:100%; width:100%;">
-    </a>
-    <p></p>
-  </li>
-
-  <li style="color:white;">
-    <a href="https://www.twitch.tv/nysrix" target="_blank">
-      <img src="fr9.png" alt="Joueur 10" style="height:100%; width:100%;">
-    </a>
-    <p></p>
-  </li>
-</ul>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Brawl Stars -->
-
-<section id="brawl_stars" class="section">
-  <h2>Brawl Stars</h2>
-  <div class="category">
-    <h3>🏆 Joueurs Officiels</h3>
     <ul>
-
       <li style="color:white;">
-        <a href="https://x.com/" target="_blank">
-        <img src="BS1.png" alt="Joueur 1" style="height:100%; width:100%;">
-        </a>
-        <p></p>
-      </li>
-
-
-      <li style="color:white;">
-        <a href="https://x.com/" target="_blank">
-        <img src="BS2.png" alt="Joueur 2" style="height:100%; width:100%;">
-        </a>
-        <p></p>
-      </li>
-
-
-      <li style="color:white;">
-        <a href="https://x.com/" target="_blank">
-        <img src="BS3.png" alt="Joueur 3" style="height:100%; width:100%;">
-        </a>
-        <p></p>
-      </li>
-
-    <h3>🏆 Staff</h3>
-    <ul>
-
-      <li style="color:white;">
-        <a href="https://x.com/" target="_blank">
-        <img src="BS4.png" alt="staff 1" style="height:100%; width:100%;">
-        </a>
+        <img src="fr8.png" alt="Joueur 9" style="height:250px;">
         <p></p>
       </li>
       <li style="color:white;">
-        <a href="https://x.com/" target="_blank">
-        <img src="BS5.png" alt="staff 2" style="height:100%; width:100%;">
-        </a>
+        <img src="fr9.png" alt="Joueur 10" style="height:250px;">
         <p></p>
       </li>
-
-
+    </ul>
 
   </div>
 </section>
@@ -709,32 +503,31 @@
 
 
 <!-- Réseaux -->
-
 <section id="reseaux" class="section">
   <h2>Nos Réseaux</h2>
   <div class="grid">
     <a href="https://www.instagram.com/kataktis_esport/" target="_blank" class="card">
-      <img src="insta.png" alt="Instagram" style="height:150px;">
+      <img src="insta.png" alt="Instagram" style="height:60px;">
       <h4 style="color:white;">@kataktis_esport</h4>
       <p style="color:white;">Instagram</p>
     </a>
     <a href="https://x.com/KataktisS" target="_blank" class="card">
-      <img src="x.png" alt="X/Twitter" style="height:150px;">
+      <img src="x.png" alt="X/Twitter" style="height:60px;">
       <h4 style="color:white;">@Kataktis eSport</h4>
       <p style="color:white;">X (Twitter)</p>
     </a>
     <a href="https://www.twitch.tv/kataktisesport" target="_blank" class="card">
-      <img src="twitch.png" alt="Twitch" style="height:150px;">
+      <img src="twitch.png" alt="Twitch" style="height:60px;">
       <h4 style="color:white;">@KataktisEsport</h4>
       <p style="color:white;">Twitch</p>
     </a>
     <a href="https://www.youtube.com/@kataktise-sport5639" target="_blank" class="card">
-      <img src="yt.png" alt="YouTube" style="height:150px;">
+      <img src="yt.png" alt="YouTube" style="height:60px;">
       <h4 style="color:white;">@Kataktis E-sport</h4>
       <p style="color:white;">YouTube</p>
     </a>
-    <a href="https://www.tiktok.com/@cryzox.esport?_t=ZN-8zYkXF36bT8&_r=1" target="_blank" class="card">
-      <img src="tt.png" alt="TikTok" style="height:150px;">
+    <a href="https://www.tiktok.com/@kataktis.esp" target="_blank" class="card">
+      <img src="tt.png" alt="TikTok" style="height:60px;">
       <h4 style="color:white;">@Kataktis.esport</h4>
       <p style="color:white;">TikTok</p>
     </a>
@@ -750,11 +543,7 @@
 
 
 
-
-
-
 <!-- Clan -->
-
 <section id="effectif" class="section">
 
 
@@ -768,13 +557,8 @@
   <h2>Co-Président</h2>
   <ul>
     <li>BLK</li>
-    <li>Helio</li>
   </ul>
 
-  <h2>Equipe Management</h2>
-  <ul>
-    <li>Nasim (Responsable Brawl Stars)</li>
-  </ul>
 
   <h2>Equipe Audio Visuel</h2>
   <ul>
@@ -798,12 +582,7 @@
 
 
 
-
-
-
-
 <!-- Boutique -->
-
 <section id="boutique" class="section">
   <h2>Boutique</h2>
   <div class="grid">
@@ -825,18 +604,14 @@
 
 
 
-
-
-
 <!-- Tournois -->
-
 <section id="tournois" class="section">
   <h2>Tournois</h2>
   <div class="grid">
     <div class="card">
-      <img src="actu1.jpg" alt="kataktis cup" style="width:100%; border-radius:8px;">
-      <h4>Kataktis Cup en partenaria avec XEOS</h4>
-      <p>27 Septembre</p>
+      <img src="actu1.jpg" alt="soon" style="width:100%; border-radius:8px;">
+      <h4>soon</h4>
+      <p>soon</p>
     </div>
   </div>
 </section>
@@ -851,49 +626,47 @@
 <section id="recrutement" class="section">
   <h2 tabindex="-1">Rejoins la team ou collabore avec nous</h2>
 
-  <!-- Partie 1 : Candidature joueur -->
-  <div style="margin-bottom: 50px;">
-    <h3 style="color: var(--team-color); border-left: 4px solid var(--team-color); padding-left: 10px;">🎮 Candidature Joueur</h3>
-    <form id="recrutement-form" style="max-width: 600px; margin: auto;">
+   <!-- Formulaire joueur -->
+    <section class="form-section">
+      <h2>Rejoindre l'équipe</h2>
+      <form id="recrutement-form">
+        <label>Discord :</label>
+        <input type="text" name="discord" placeholder="Ton pseudo Discord" required>
 
-      <label for="discord">Pseudo Discord</label>
-      <input id="discord" type="text" name="discord" placeholder="Ex: KTK_Yass" required>
+        <label>PR / Division :</label>
+        <input type="text" name="pr" placeholder="Ex: 2500 PR" required>
 
-      <label for="pr">PR / Division</label>
-      <input id="pr" type="text" name="pr" placeholder="Ex: 1k2 PR, Div 2" required>
+        <label>Message :</label>
+        <textarea name="message" placeholder="Pourquoi veux-tu rejoindre Kataktis ?" required></textarea>
 
-      <label for="tracker">Tracker</label>
-      <input id="tracker" type="text" name="tracker" placeholder="..." required>
+        <button type="submit">Envoyer ma candidature</button>
+      </form>
+      <p id="form-message"></p>
+    </section>
 
-      <label for="presentation">Présente-toi</label>
-      <textarea id="presentation" name="presentation" placeholder="Parle-nous de toi" required></textarea>
+    <!-- Formulaire partenaire -->
+    <section class="form-section">
+      <h2>Devenir partenaire</h2>
+      <form id="partenaire-form">
+        <label>Nom de la structure :</label>
+        <input type="text" name="nom_structure" placeholder="Nom de votre structure" required>
 
-      <label for="message">Présente-ton gameplay</label>
-      <textarea id="message" name="message" placeholder="rôle, ambition, un duo ?" required></textarea>
+        <label>Email :</label>
+        <input type="email" name="email" placeholder="Votre email" required>
 
-      <button type="submit">Envoyer ma candidature</button>
-      <p id="form-message" style="margin-top:10px;"></p>
-    </form>
-  </div>
+        <label>Proposition :</label>
+        <textarea name="proposition" placeholder="Expliquez votre proposition" required></textarea>
 
-  <!-- Partie 2 : Partenariat -->
-  <div>
-    <h3 style="color: var(--team-color); border-left: 4px solid var(--team-color); padding-left: 10px;">🤝 Demande de Partenariat</h3>
-    <form id="partenaire-form" style="max-width: 600px; margin: auto;">
+        <button type="submit">Envoyer la demande</button>
+      </form>
+      <p id="partner-message"></p>
+    </section>
 
-      <label for="nom">Nom de la structure</label>
-      <input id="nom" type="text" name="nom_structure" placeholder="Nom de votre entreprise / team" required>
 
-      <label for="email">Email</label>
-      <input id="email" type="text" name="email" placeholder="contact@votresite.com" required>
 
-      <label for="proposition">Votre proposition</label>
-      <textarea id="proposition" name="proposition" placeholder="Expliquez-nous votre idée de partenariat..." required></textarea>
 
-      <button type="submit">Envoyer ma demande</button>
-      <p id="partner-message" style="margin-top:10px;"></p>
-    </form>
-  </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
@@ -902,40 +675,47 @@
       emailjs.init("pMwdLWhRC_47k_8LL");  
     })();
 
-    // Envoi formulaire joueur
-    document.getElementById('recrutement-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = this;
-      const msg = document.getElementById("form-message");
 
-      emailjs.sendForm('service_mj22iql', 'template_candidature', this) 
-        .then(() => {
-          msg.textContent = "✅ Candidature envoyée avec succès !";
-          msg.style.color = "green";
-          form.reset();
-        }, (error) => {
-          msg.textContent = "❌ Erreur. Réessaye.";
-          msg.style.color = "red";
-          console.error(error);
-        });
+
+
+
+
+
+// Formulaire joueur (candidature)
+document.getElementById('recrutement-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const form = this;
+  const msg = document.getElementById("form-message");
+
+  emailjs.sendForm('service_mj22iql', 'template_candidature', form)
+    .then(() => {
+      msg.textContent = "✅ Candidature envoyée avec succès !";
+      msg.style.color = "lime";
+      form.reset();
+    }, (error) => {
+      msg.textContent = "❌ Erreur lors de l'envoi.";
+      msg.style.color = "red";
+      console.error(error);
     });
+});
 
-    // Envoi formulaire partenaire
-    document.getElementById('partenaire-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = this;
-      const msg = document.getElementById("partner-message");
+// Formulaire partenaire
+document.getElementById('partenaire-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const form = this;
+  const msg = document.getElementById("partner-message");
 
-      emailjs.sendForm('service_mj22iql', 'template_partenaire', this) 
-        .then(() => {
-          msg.textContent = "✅ Demande envoyée avec succès !";
-          msg.style.color = "green";
-          form.reset();
-        }, (error) => {
-          msg.textContent = "❌ Une erreur est survenue.";
-          msg.style.color = "red";
-          console.error(error);
-        });
+  emailjs.sendForm('service_mj22iql', 'template_partenaire', form)
+    .then(() => {
+      msg.textContent = "✅ Demande envoyée avec succès !";
+      msg.style.color = "lime";
+      form.reset();
+    }, (error) => {
+      msg.textContent = "❌ Une erreur est survenue.";
+      msg.style.color = "red";
+      console.error(error);
     });
+});
+
   </script>
 </section>
