@@ -463,7 +463,7 @@
 
     <div class="slide-actu">
       <img src="actu3.jpg" alt="Actu 1">
-      <div class="actu-texte">📢 fusion avec Cryzox!</div>
+      <div class="actu-texte">📢 Maillot diponible sur YOKO</div>
     </div>
 
 
@@ -847,9 +847,9 @@
   <h2>Boutique</h2>
   <div class="grid">
     <div class="card">
-      <img src="soon" alt="soon" style="width:100%; border-radius:8px;">
-      <h4>soon</h4>
-      <p>soon</p>
+      <img src="actu3.jpg" alt="maillot" style="width:100%; border-radius:8px;">
+      <h4>Maillot KTK sur YOKO</h4>
+      <p>34,99 €</p>
     </div>
   </div>
 </section>
@@ -873,14 +873,13 @@
   <h2>Tournois</h2>
   <div class="grid">
     <div class="card">
-      <img src="actu1.jpg" alt="kataktis cup" style="width:100%; border-radius:8px;">
+      <img src="actu1.jpg" alt="kataktis cup" style="width:100%; border-radius:8px;"    >
+      <a href="https://wls.ac/tZC7EoYjse" target="_blank">
       <h4>Kataktis Cup en partenaria avec XEOS</h4>
       <p>27 Septembre</p>
     </div>
   </div>
 </section>
-
-
 
 
 
@@ -978,4 +977,45 @@
     });
   </script>
 </section>
+
+<footer>
+
+  <img src="logo.png" alt="Logo VYN" style="height:40px;"><br>
+  © 2025 Team VYN – Tous droits réservés.
+</footer>
+
+<script>
+  function showPage(pageId) {
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    const section = document.querySelector(pageId);
+    if (section) section.classList.add('active');
+  }
+
+  window.addEventListener('hashchange', () => {
+    showPage(location.hash || '#accueil');
+  });
+
+  // au chargement
+  window.addEventListener('DOMContentLoaded', () => {
+    showPage(location.hash || '#accueil');
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    let slideIndex = 0;
+    const slides = document.querySelectorAll("#fil-actus .slide-actu");
+
+    if (slides.length > 0) {
+      setInterval(() => {
+        slides[slideIndex].classList.remove("active");
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add("active");
+      }, 5000); // toutes les 5 secondes
+    }
+  });
+</script>
+
 </body></html>
